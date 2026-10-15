@@ -6,7 +6,7 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[];
 
-export interface Database {
+export type Database = {
   public: {
     Tables: {
       media_items: {
@@ -61,6 +61,7 @@ export interface Database {
           finished_at?: string | null;
           created_at?: string;
         };
+        Relationships: [];
       };
       reviews: {
         Row: {
@@ -87,6 +88,7 @@ export interface Database {
           is_public?: boolean;
           updated_at?: string;
         };
+        Relationships: [];
       };
       activity_logs: {
         Row: {
@@ -113,8 +115,37 @@ export interface Database {
           activity_date?: string;
           created_at?: string;
         };
+        Relationships: [];
+      };
+      profiles: {
+        Row: {
+          id: string;
+          username: string | null;
+          full_name: string | null;
+          avatar_url: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id: string;
+          username?: string | null;
+          full_name?: string | null;
+          avatar_url?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          username?: string | null;
+          full_name?: string | null;
+          avatar_url?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
       };
     };
+    Views: Record<string, never>;
     Functions: {
       calculate_streak: {
         Args: {
@@ -130,5 +161,7 @@ export interface Database {
         }[];
       };
     };
+    Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
   };
-}
+};
